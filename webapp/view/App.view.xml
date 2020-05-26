@@ -1,0 +1,84 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core" controllerName="com.vega.ReportFreeSmartTable.controller.App" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<smartFilterBar:SmartFilterBar id="id_sfb" entitySet="ZAPF_C_AIRLINE">
+							<smartFilterBar:controlConfiguration>
+								<smartFilterBar:ControlConfiguration key="carrid" label="Airline code" index="0" groupId="_Basic" visibleInAdvancedArea="true">
+									<smartFilterBar:defaultFilterValues>
+										<smartFilterBar:SelectOption low="AA"/>
+									</smartFilterBar:defaultFilterValues>
+								</smartFilterBar:ControlConfiguration>
+								<smartFilterBar:ControlConfiguration key="carrname" index="1" groupId="_Basic" visibleInAdvancedArea="true">
+									<!--<smartFilterBar:defaultFilterValues>-->
+									<!--	<smartFilterBar:SelectOption low="AA"></smartFilterBar:SelectOption>-->
+									<!--</smartFilterBar:defaultFilterValues>-->
+								</smartFilterBar:ControlConfiguration>
+								<smartFilterBar:ControlConfiguration key="currcode" index="2" groupId="_Basic" visibleInAdvancedArea="true">
+									<!--<smartFilterBar:defaultFilterValues>-->
+									<!--	<smartFilterBar:SelectOption low="AA"></smartFilterBar:SelectOption>-->
+									<!--</smartFilterBar:defaultFilterValues>-->
+								</smartFilterBar:ControlConfiguration>
+							</smartFilterBar:controlConfiguration>
+						</smartFilterBar:SmartFilterBar>
+						<smartTable:SmartTable smartFilterId="id_sfb" entitySet="ZAPF_C_AIRLINE" header="Airlines" showRowCount="true" 
+						showFullScreenButton="true" tableType="ResponsiveTable" placeToolbarInTable="true" useExportToExcel="true" beforeExport="onBeforeExport"
+						enableAutoBinding="true"
+						class="sapUiResponsiveContentPadding"
+						>
+							<Table id="idTable" growing="true">
+								<columns>
+									<Column>
+										<customData>
+											<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;carrid&quot;,&quot;leadingProperty&quot;: &quot;carrid&quot;}"/>
+										</customData>
+										<Text text="{i18n>AIRCODE}" app:w5g.dt.context="/ZAPF_C_AIRLINE"/>
+									</Column>
+									<!--<Column>-->
+									<!--	<customData>-->
+									<!--		<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;carrname&quot;,&quot;leadingProperty&quot;: &quot;carrname&quot;}"/>-->
+									<!--	</customData>-->
+									<!--	<Text text="{/#ZAPF_C_AIRLINEType/carrid/@sap:label}"/>-->
+									<!--</Column>-->
+									<Column>
+										<customData>
+											<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;currcode&quot;,&quot;leadingProperty&quot;: &quot;currcode&quot;}"/>
+										</customData>
+										<Text text="{/#ZAPF_C_AIRLINEType/currcode/@sap:label}"/>
+									</Column>
+									<Column>
+										<customData>
+											<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;url&quot;,&quot;leadingProperty&quot;: &quot;url&quot;}"/>
+										</customData>
+										<Text text="{/#ZAPF_C_AIRLINEType/url/@sap:label}"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem highlight="{path:'currcode', formatter:'.formatter.formatRowHighlight'}">
+									<!--highlight="{path:'currcode', formatter:'.formatRowHighlight'}"-->
+									
+										<cells>
+											<!--<Text text="{carrid}"/>-->
+											<!--<Text text="{carrname}"/>-->
+											<!--<Text text="{currcode}"/>-->
+											<!--<Text text="{url}"/>-->
+											<!--<Text text="{FamilyName}"/>-->
+											
+											<ObjectIdentifier title="{carrid}" text="{carrname}" />
+											<ObjectAttribute text="{currcode}" active="true" />
+											<!--<object-->
+											<ObjectNumber number="50" state="Information" unit="{currcode}"/>
+											<ObjectAttribute text="{url}" active="true"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</smartTable:SmartTable>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

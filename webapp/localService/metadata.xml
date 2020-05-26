@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZGW_AIRLINE_SRV" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="ZAPF_C_AIRLINEType" sap:label="Airline - Consumption View" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Compañía aérea"
+					sap:quickinfo="Denominación breve de la compañía aérea"/><Property Name="carrname" Type="Edm.String" MaxLength="20" sap:label="Compañía aérea" sap:quickinfo="Nombre de una compañía aérea"/><Property Name="currcode" Type="Edm.String" MaxLength="5" sap:label="Mon.loc.cia.aér." sap:quickinfo="Moneda local de la compañía aérea"
+					sap:semantics="currency-code"/><Property Name="url" Type="Edm.String" MaxLength="255" sap:label="URL" sap:quickinfo="URL de una compañía aérea"/><NavigationProperty Name="to_Flight" Relationship="ZGW_AIRLINE_SRV.assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"
+					FromRole="FromRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6" ToRole="ToRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"/><NavigationProperty Name="to_Flights" Relationship="ZGW_AIRLINE_SRV.assoc_ECFA1E9F885E0512B3824DBAB0152350"
+					FromRole="FromRole_assoc_ECFA1E9F885E0512B3824DBAB0152350" ToRole="ToRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"/><NavigationProperty Name="to_Fli_sched" Relationship="ZGW_AIRLINE_SRV.assoc_A75B27F3F00AD68727ACDCE180CE9E20"
+					FromRole="FromRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20" ToRole="ToRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"/><NavigationProperty Name="to_FSched" Relationship="ZGW_AIRLINE_SRV.assoc_41263CB9100C3314B1A95F7FE9396838"
+					FromRole="FromRole_assoc_41263CB9100C3314B1A95F7FE9396838" ToRole="ToRole_assoc_41263CB9100C3314B1A95F7FE9396838"/></EntityType>
+			<EntityType Name="ZAPF_C_FLIGHTSType" sap:label="Flight Info - Consumption Views" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/><PropertyRef Name="connid"/><PropertyRef Name="fldate"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Compañía aérea"
+					sap:quickinfo="Denominación breve de la compañía aérea"/><Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nº de conexión"
+					sap:quickinfo="Código de conexión de vuelo directo"/><Property Name="fldate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Fecha de vuelo"/><Property Name="price" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="currency" sap:label="Prc.vuelo"
+					sap:quickinfo="Precio del vuelo"/><Property Name="currency" Type="Edm.String" MaxLength="5" sap:label="Mon.loc.cia.aér." sap:quickinfo="Moneda local de la compañía aérea"
+					sap:semantics="currency-code"/><Property Name="planetype" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Tipo avión"
+					sap:quickinfo="Tipo de avión"/><Property Name="seatsmax" Type="Edm.Int32" sap:label="Ocupac.máx.cl.econ." sap:quickinfo="Ocupación máxima en clase económica"/><Property Name="seatsocc" Type="Edm.Int32" sap:label="Ocup.cl.económ." sap:quickinfo="Plazas ocupadas en clase económica"/><Property Name="paymentsum" Type="Edm.Decimal" Precision="18" Scale="3" sap:unit="currency" sap:label="Total reserv.act."
+					sap:quickinfo="Total de las reservas efectuadas hasta el momento"/><Property Name="seatsmax_b" Type="Edm.Int32" sap:label="OcupMáxClBusiness" sap:quickinfo="Ocupación máxima en clase Business"/><Property Name="seatsocc_b" Type="Edm.Int32" sap:label="OcupClBusiness" sap:quickinfo="Plazas ocupada en clase Business"/><Property Name="seatsmax_f" Type="Edm.Int32" sap:label="Ocup.máxima 1ª clase" sap:quickinfo="Ocupación máxima en primera clase"/><Property Name="seatsocc_f" Type="Edm.Int32" sap:label="Ocup.1ª clase" sap:quickinfo="Plazas ocupadas en primera clase"/></EntityType>
+			<EntityType Name="ZAPF_C_FLIGHT_SCHEDType" sap:label="Flight schedule - Consumption Views" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/><PropertyRef Name="connid"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Compañía aérea"
+					sap:quickinfo="Denominación breve de la compañía aérea"/><Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nº de conexión"
+					sap:quickinfo="Código de conexión de vuelo directo"/><Property Name="countryfr" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/><Property Name="cityfrom" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Ciudad sal."
+					sap:quickinfo="Ciudad de salida"/><Property Name="airpfrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Aeropuerto de salida"/><Property Name="countryto" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/><Property Name="cityto" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Ciudad de llegada"/><Property Name="airpto" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Aeropuerto destino"
+					sap:quickinfo="Aeropuerto de destino"/><Property Name="fltime" Type="Edm.Int32" sap:label="Dur.del vuelo" sap:quickinfo="Dur.vuelo"/><Property Name="deptime" Type="Edm.Time" Precision="0" sap:label="Hora de salida"/><Property Name="arrtime" Type="Edm.Time" Precision="0" sap:label="Hora llegada" sap:quickinfo="Hora de llegada"/><Property Name="distance" Type="Edm.Decimal" Precision="9" Scale="4" sap:unit="distid" sap:label="Distanc.vuelo" sap:quickinfo="Distancia"/><Property Name="distid" Type="Edm.String" MaxLength="3" sap:label="Distancia en"
+					sap:quickinfo="Unidad de medida de la distancia (km, millas)" sap:semantics="unit-of-measure"/><Property Name="fltype" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Vuelo char." sap:quickinfo="Tipo de vuelo"/><Property Name="period" Type="Edm.Byte" sap:label="n día(s) desp." sap:quickinfo="Llegada n días después"/></EntityType>
+			<EntityType Name="zapf_i_FLIGhtsType" sap:label="Flight" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/><PropertyRef Name="connid"/><PropertyRef Name="fldate"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Compañía aérea"
+					sap:quickinfo="Denominación breve de la compañía aérea"/><Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nº de conexión"
+					sap:quickinfo="Código de conexión de vuelo directo"/><Property Name="fldate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Fecha de vuelo"/><Property Name="price" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="currency" sap:label="Prc.vuelo"
+					sap:quickinfo="Precio del vuelo"/><Property Name="currency" Type="Edm.String" MaxLength="5" sap:label="Mon.loc.cia.aér." sap:quickinfo="Moneda local de la compañía aérea"
+					sap:semantics="currency-code"/><Property Name="planetype" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Tipo avión"
+					sap:quickinfo="Tipo de avión"/><Property Name="seatsmax" Type="Edm.Int32" sap:label="Ocupac.máx.cl.econ." sap:quickinfo="Ocupación máxima en clase económica"/><Property Name="seatsocc" Type="Edm.Int32" sap:label="Ocup.cl.económ." sap:quickinfo="Plazas ocupadas en clase económica"/><Property Name="paymentsum" Type="Edm.Decimal" Precision="18" Scale="3" sap:unit="currency" sap:label="Total reserv.act."
+					sap:quickinfo="Total de las reservas efectuadas hasta el momento"/><Property Name="seatsmax_b" Type="Edm.Int32" sap:label="OcupMáxClBusiness" sap:quickinfo="Ocupación máxima en clase Business"/><Property Name="seatsocc_b" Type="Edm.Int32" sap:label="OcupClBusiness" sap:quickinfo="Plazas ocupada en clase Business"/><Property Name="seatsmax_f" Type="Edm.Int32" sap:label="Ocup.máxima 1ª clase" sap:quickinfo="Ocupación máxima en primera clase"/><Property Name="seatsocc_f" Type="Edm.Int32" sap:label="Ocup.1ª clase" sap:quickinfo="Plazas ocupadas en primera clase"/></EntityType>
+			<EntityType Name="zapf_i_FLIGht_SCHEDType" sap:label="Flight schedule" sap:content-version="1">
+				<Key><PropertyRef Name="carrid"/><PropertyRef Name="connid"/></Key><Property Name="carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Compañía aérea"
+					sap:quickinfo="Denominación breve de la compañía aérea"/><Property Name="connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nº de conexión"
+					sap:quickinfo="Código de conexión de vuelo directo"/><Property Name="countryfr" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/><Property Name="cityfrom" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Ciudad sal."
+					sap:quickinfo="Ciudad de salida"/><Property Name="airpfrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Aeropuerto de salida"/><Property Name="countryto" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/><Property Name="cityto" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Ciudad de llegada"/><Property Name="airpto" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Aeropuerto destino"
+					sap:quickinfo="Aeropuerto de destino"/><Property Name="fltime" Type="Edm.Int32" sap:label="Dur.del vuelo" sap:quickinfo="Dur.vuelo"/><Property Name="deptime" Type="Edm.Time" Precision="0" sap:label="Hora de salida"/><Property Name="arrtime" Type="Edm.Time" Precision="0" sap:label="Hora llegada" sap:quickinfo="Hora de llegada"/><Property Name="distance" Type="Edm.Decimal" Precision="9" Scale="4" sap:unit="distid" sap:label="Distanc.vuelo" sap:quickinfo="Distancia"/><Property Name="distid" Type="Edm.String" MaxLength="3" sap:label="Distancia en"
+					sap:quickinfo="Unidad de medida de la distancia (km, millas)" sap:semantics="unit-of-measure"/><Property Name="fltype" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Vuelo char." sap:quickinfo="Tipo de vuelo"/><Property Name="period" Type="Edm.Byte" sap:label="n día(s) desp." sap:quickinfo="Llegada n días después"/></EntityType>
+			<Association Name="assoc_ECFA1E9F885E0512B3824DBAB0152350" sap:content-version="1">
+				<End Type="ZGW_AIRLINE_SRV.ZAPF_C_AIRLINEType" Multiplicity="1" Role="FromRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"><OnDelete Action="Cascade"/></End><End Type="ZGW_AIRLINE_SRV.zapf_i_FLIGhtsType" Multiplicity="*" Role="ToRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"><PropertyRef Name="carrid"/></Principal>
+					<Dependent Role="ToRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"><PropertyRef Name="carrid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_A75B27F3F00AD68727ACDCE180CE9E20" sap:content-version="1">
+				<End Type="ZGW_AIRLINE_SRV.ZAPF_C_AIRLINEType" Multiplicity="1" Role="FromRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"><OnDelete Action="Cascade"/></End><End Type="ZGW_AIRLINE_SRV.zapf_i_FLIGht_SCHEDType" Multiplicity="*" Role="ToRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"><PropertyRef Name="carrid"/></Principal>
+					<Dependent Role="ToRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"><PropertyRef Name="carrid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_41263CB9100C3314B1A95F7FE9396838" sap:content-version="1"><End Type="ZGW_AIRLINE_SRV.ZAPF_C_AIRLINEType" Multiplicity="1" Role="FromRole_assoc_41263CB9100C3314B1A95F7FE9396838"/><End Type="ZGW_AIRLINE_SRV.ZAPF_C_FLIGHT_SCHEDType" Multiplicity="*" Role="ToRole_assoc_41263CB9100C3314B1A95F7FE9396838"/></Association>
+			<Association Name="assoc_50C55D7F4D38606DF7B0E2BCC046F3B6" sap:content-version="1"><End Type="ZGW_AIRLINE_SRV.ZAPF_C_AIRLINEType" Multiplicity="1" Role="FromRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"/><End Type="ZGW_AIRLINE_SRV.ZAPF_C_FLIGHTSType" Multiplicity="*" Role="ToRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"/></Association>
+			<EntityContainer Name="ZGW_AIRLINE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZAPF_C_AIRLINE" EntityType="ZGW_AIRLINE_SRV.ZAPF_C_AIRLINEType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZAPF_C_FLIGHTS" EntityType="ZGW_AIRLINE_SRV.ZAPF_C_FLIGHTSType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZAPF_C_FLIGHT_SCHED" EntityType="ZGW_AIRLINE_SRV.ZAPF_C_FLIGHT_SCHEDType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="zapf_i_FLIGhts" EntityType="ZGW_AIRLINE_SRV.zapf_i_FLIGhtsType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="zapf_i_FLIGht_SCHED" EntityType="ZGW_AIRLINE_SRV.zapf_i_FLIGht_SCHEDType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_50C55D7F4D38606DF7B0E2BCC046F3B6" Association="ZGW_AIRLINE_SRV.assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAPF_C_AIRLINE" Role="FromRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"/><End EntitySet="ZAPF_C_FLIGHTS" Role="ToRole_assoc_50C55D7F4D38606DF7B0E2BCC046F3B6"/></AssociationSet>
+				<AssociationSet Name="assoc_A75B27F3F00AD68727ACDCE180CE9E20" Association="ZGW_AIRLINE_SRV.assoc_A75B27F3F00AD68727ACDCE180CE9E20"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAPF_C_AIRLINE" Role="FromRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"/><End EntitySet="zapf_i_FLIGht_SCHED" Role="ToRole_assoc_A75B27F3F00AD68727ACDCE180CE9E20"/></AssociationSet>
+				<AssociationSet Name="assoc_ECFA1E9F885E0512B3824DBAB0152350" Association="ZGW_AIRLINE_SRV.assoc_ECFA1E9F885E0512B3824DBAB0152350"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAPF_C_AIRLINE" Role="FromRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"/><End EntitySet="zapf_i_FLIGhts" Role="ToRole_assoc_ECFA1E9F885E0512B3824DBAB0152350"/></AssociationSet>
+				<AssociationSet Name="assoc_41263CB9100C3314B1A95F7FE9396838" Association="ZGW_AIRLINE_SRV.assoc_41263CB9100C3314B1A95F7FE9396838"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZAPF_C_AIRLINE" Role="FromRole_assoc_41263CB9100C3314B1A95F7FE9396838"/><End EntitySet="ZAPF_C_FLIGHT_SCHED" Role="ToRole_assoc_41263CB9100C3314B1A95F7FE9396838"/></AssociationSet>
+			</EntityContainer>
+			<Annotations Target="ZGW_AIRLINE_SRV.ZGW_AIRLINE_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link rel="self"
+				href="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/sap/ZGW_AIRLINE_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-p1942348239trial.dispatcher.hanatrial.ondemand.com/destinations/DT_ACCIONA/sap/opu/odata/sap/ZGW_AIRLINE_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
